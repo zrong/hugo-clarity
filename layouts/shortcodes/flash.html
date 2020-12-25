@@ -1,0 +1,16 @@
+{{- $width := default 400 (.Get "width") }}
+{{- $height := default 300 (.Get "height") }}
+{{- $fversion := default "7" (.Get "fversion") }}
+{{- $movie := .Get "movie" }}
+{{- if $movie -}}
+<div id="flash-movie-{{ .Ordinal }}" class="jumbotron">
+  <p>请使用下面的链接升级 Flash Player 到最新版本：</p>
+  <p><a href="http://www.adobe.com/go/getflash/">安装最新的Flash Player插件</a></p>
+</div>
+<script>
+const el = document.getElementById("flash-movie-{{ .Ordinal }}");
+swfobject.embedSWF({{ $movie }}, el, {{ int $width }}, {{ int $height }}, {{ $fversion }});
+</script>
+{{ else }}
+{{ errorf "missing value for param 'movie' in flash: %s" .Position}}
+{{ end }}

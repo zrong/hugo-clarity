@@ -5,7 +5,11 @@
 <footer class="footer">
   <div class="footer_inner wrap pale">
     <img src='{{ absURL (default "icons/apple-touch-icon.png" $s.footerLogo) }}' class="icon icon_2 transparent">
-    <p>{{ T "copyright" }}{{ with $s.since }} {{ . }}{{ end }}<span class="year"></span> {{ upper .Site.Title }}. {{ T "all_rights" }}</p>
+    <p>
+      {{ T "copyright" }}&copy; {{ with $s.since }} {{ . }}{{ end }}<span class="year"></span> {{ upper .Site.Title }}. {{ T "all_rights" }}
+      &nbsp;
+      {{- if .Site.Params.beian }}{{ .Site.Params.beian }}{{ end }}
+    </p>
     {{- partial "top" .}}
   </div>
 </footer>

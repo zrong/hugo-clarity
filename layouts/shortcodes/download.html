@@ -1,0 +1,16 @@
+{{ range $.Params }}
+<div id="aid-dl-div-{{ . }}">
+  <button id="aid-dl-btn-{{ . }}">{{ $.Site.Data.aid.download.btn_title }}</button>
+</div>
+{{ end }}
+<script>
+{{ range $.Params }}
+$('#dl-btn-{{ . }}').click(function(e){
+  if (download === undefined) {
+    alert('找不到 download 函数！')
+  } else {
+    download({{ . }})
+  }
+})
+{{ end }}
+</script>

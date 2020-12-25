@@ -1,1 +1,19 @@
+{{ if .Site.Params.disqus.enable }}
+<!-- disqus -->
 {{ template "_internal/disqus.html" . }}
+{{ end }}
+
+{{ if .Site.Params.isso.enable }}
+<!-- isso -->
+<script
+    data-isso="//{{ .Site.Params.isso.host }}/"
+    src="//{{ .Site.Params.isso.host }}/js/embed.min.js"
+    async></script>
+<section
+    id="isso-thread"
+    class="post bg-white"
+    data-isso-reply-notifications="true"
+    data-isso-id="{{ .Params.postid }}"
+    data-title="{{ .Params.slug }}"
+    ></section>
+{{ end }}
