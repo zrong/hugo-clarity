@@ -10,6 +10,15 @@
     {{- $styles := resources.Get $mainSassFile | resources.ExecuteAsTemplate $mainSassFile . | resources.ToCSS $options | resources.Fingerprint "sha512" }}
 
     <!-- scripts definition -->
+    {{- $swfobjectPath := "js/swfobject.js" }}
+    {{- $swfobject := resources.Get $swfobjectPath | resources.ExecuteAsTemplate $swfobjectPath . }}
+
+    {{- $axiosPath := "js/axios.js" }}
+    {{- $axios := resources.Get $axiosPath | resources.ExecuteAsTemplate $axiosPath . }}
+
+    {{- $aidPath := "js/aid.js" }}
+    {{- $aid := resources.Get $aidPath | resources.ExecuteAsTemplate $aidPath . }}
+
     {{- $highlightPath := "js/highlight.js" }}
     {{- $highlight := resources.Get $highlightPath | resources.ExecuteAsTemplate $highlightPath . }}
 
@@ -28,7 +37,7 @@
     {{- $mainScriptPath := "js/index.js" }}
     {{- $main := resources.Get $mainScriptPath | resources.ExecuteAsTemplate $mainScriptPath . }}
 
-    {{- $bundle := slice $highlight $functions $code $main $custom | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+    {{- $bundle := slice $swfobject $axios $aid $highlight $functions $code $main $custom | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
 
     <!-- preload assets declaration -->
     <link rel="preload" href="{{ $styles.Permalink }}" integrity = "{{ $styles.Data.Integrity }}" as="style" crossorigin="anonymous">

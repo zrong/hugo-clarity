@@ -1,0 +1,21 @@
+{{ range (where (where .Site.Pages "Type" "in" site.Params.mainSections) "Kind" "page").GroupByDate "2006" }}
+<li class="post_item">
+  <div class="excerpt">
+    <div class="excerpt_header">
+      <h2>{{ .Key }}</h2>
+    </div>
+    <div class="excerpt_footer">
+      <ul class="flex-column">
+      {{ range .Pages }}
+        <li>
+          <span class="post_date">
+            {{ .Date.Format (default "Jan 2, 2006" $.Site.Params.dateFormat) -}}
+          </span>
+          <a class="nav-link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+      </ul>
+    </div>
+  </div>
+</li>
+{{ end }}

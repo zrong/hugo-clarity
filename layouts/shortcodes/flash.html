@@ -3,12 +3,13 @@
 {{- $fversion := default "7" (.Get "fversion") }}
 {{- $movie := .Get "movie" }}
 {{- if $movie -}}
-<div id="flash-movie-{{ .Ordinal }}" class="jumbotron">
+<div id="flash-movie-{{ .Ordinal }}" class="message">
   <p>请使用下面的链接升级 Flash Player 到最新版本：</p>
   <p><a href="http://www.adobe.com/go/getflash/">安装最新的Flash Player插件</a></p>
 </div>
 <script>
 const el = document.getElementById("flash-movie-{{ .Ordinal }}");
+// eslint-disable-next-line
 swfobject.embedSWF({{ $movie }}, el, {{ int $width }}, {{ int $height }}, {{ $fversion }});
 </script>
 {{ else }}

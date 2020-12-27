@@ -1,3 +1,4 @@
+/* eslint-disable */
 const pageHasLoaded = 'DOMContentLoaded';
 (function toggleColorModes(){
   const light = 'lit';
@@ -463,6 +464,7 @@ function fileClosure(){
     });
   })();
   
+  aidInitDownloads()
   // add new code above this line
 }
 

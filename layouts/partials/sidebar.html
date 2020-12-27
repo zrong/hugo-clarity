@@ -4,10 +4,16 @@
     {{ if $s.IntroDescription }}
       <h2>{{ $s.Author }}</h2>
       <div>
-        {{ $s.IntroDescription }}
+        <p>{{ $s.IntroDescription }}</p>
+        {{- if $s.description }}
+        <p>{{ $s.description }}</p>
+        {{- end }}
       </div>
-      <a href='{{ absLangURL "about/" }}' class="button mt-1" role="button">{{ T "read_more" }}</a>
+      {{- if $s.introURL }}
+      <a href='{{ absLangURL $s.introURL }}' class="button mt-1" role="button">{{ T "read_more" }}</a>
+      {{- end }}
     {{- end }}
+    {{ partial "search-form" . }}
     {{- $posts := where (where .Site.RegularPages "Permalink" "!=" .Permalink) "Type" "in" $s.mainSections }}
     {{- $featured := default 8 $s.numberOfFeaturedPosts }}
     {{- with first $featured (where $posts "Params.featured" true)}}
