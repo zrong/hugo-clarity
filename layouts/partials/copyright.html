@@ -1,5 +1,5 @@
-<div class="post-archive">
-    <ul class="post-copyright">
+<div class="post_copyright">
+    <ul>
         <li><strong>文章ID：</strong>{{ .Param "postid" }}</li>
         <li><strong>原文作者：</strong><a rel="author" href="{{ .Site.BaseURL}}">{{ if isset .Site.Author "name" }}{{.Site.Author.name}}{{ else }}{{.Site.Title}}{{ end }}</a></li>
         <li style="word-break:break-all"><strong>原文链接：</strong><a href="{{ .Permalink}}">{{ .Permalink}}</a></li>

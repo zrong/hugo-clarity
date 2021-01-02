@@ -49,9 +49,18 @@ other = "All Series"
 [overview]
 other = "Overview"
 
+[category]
+other = "Category"
+
+[tag]
+other = "Tag"
+
 # the value of {{ T (printf "all_%s" (lower $key)) }} in sidebar is all_tag
 [all_tag]
 other = "All Tags"
+
+[all_category]
+other = "All Catebory"
 
 [download]
 other = "Download"
@@ -61,3 +70,6 @@ other = "file"
 
 [files]
 other = "files"
+
+[views]
+other = "Views"

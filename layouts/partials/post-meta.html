@@ -5,10 +5,21 @@
       {{ .Date.Format (default "Jan 2, 2006" $.Site.Params.dateFormat) -}}
     </span>
   {{- end }}
-  {{- with .Params.tags -}}
+  {{- if .IsPage }}
+  <span>[{{ .Params.postid }}]</span>
+  {{- end }}
+  {{- with .Params.category -}}
+    {{- range . }}
+      {{- $category := urlize . }}
+      <a href='{{ absLangURL (printf "category/%s" $category) }}' class="post_tag button button_translucent">
+        {{- . }}
+      </a>
+    {{- end }}
+  {{- end }}
+  {{- with .Params.tag -}}
     {{- range . }}
       {{- $tag := urlize . }}
-      <a href='{{ absLangURL (printf "tags/%s" $tag) }}' class="post_tag button button_translucent">
+      <a href='{{ absLangURL (printf "tag/%s" $tag) }}' class="post_tag button button_translucent">
         {{- . }}
       </a>
     {{- end }}
