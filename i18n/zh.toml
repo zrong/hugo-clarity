@@ -48,3 +48,28 @@ other = "所有专栏"
 
 [overview]
 other = "文章目录"
+
+[category]
+other = "分类"
+
+[tag]
+other = "标签"
+
+# the value of {{ T (printf "all_%s" (lower $key)) }} in sidebar is all_tag
+[all_tag]
+other = "所有标签"
+
+[all_category]
+other = "所有分类"
+
+[download]
+other = "下载"
+
+[file]
+other = "文件"
+
+[files]
+other = "文件"
+
+[views]
+other = "次阅读"
