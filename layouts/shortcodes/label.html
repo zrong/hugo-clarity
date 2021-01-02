@@ -1,3 +1,4 @@
-<div class="label_{{ .Get 1 }}">
+{{ $labelPostfix := default "info" (.Get 1) }}
+<div class="label_{{ $labelPostfix }}">
   <span>{{ .Get 0 }}</span>
 </div>
