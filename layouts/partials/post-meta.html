@@ -6,7 +6,7 @@
     </span>
   {{- end }}
   {{- if .IsPage }}
-  <span>[{{ .Params.postid }}]</span>
+  <span class="aid_postid">[{{ .Params.postid }}]</span>
   {{- end }}
   {{- with .Params.category -}}
     {{- range . }}

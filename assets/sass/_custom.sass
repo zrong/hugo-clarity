@@ -33,29 +33,36 @@
     padding: 0.5rem .5rem
 
 .aid_download
-    @extend %message-shared
-    padding: 0 1em 1em 1em
-    &_container
-      display: grid
-      grid-gap: .5rem
-      align-self: center
-      @media screen and (min-width: 769px) 
-        grid-template-columns: 2fr 2fr 2fr
-    &_item
-      display: flex
-      flex-direction: column
-      align-items: center
-      button
-        @extend %button
-        padding: 0.5rem 1rem
-        border-radius: .5rem
+  @extend %message-shared
+  padding: 0 1em 1em 1em
+  &_container
+    display: grid
+    grid-gap: .5rem
+    align-self: center
+    @media screen and (min-width: 769px) 
+      grid-template-columns: 2fr 2fr 2fr
+  &_item
+    display: flex
+    flex-direction: column
+    align-items: center
+    button
+      @extend %button
+      padding: 0.5rem 1rem
+      border-radius: .5rem
 
 .post_copyright
-    @extend %message-shared
-    padding: 1em
+  @extend %message-shared
+  padding: 1em
 
 .label_info
   @extend %button
   padding: .5em
   margin: 1em 0
   text-align: center
+
+.aid_pageview
+  color: #777777
+  &_item
+
+.aid_postid
+  color: #777777

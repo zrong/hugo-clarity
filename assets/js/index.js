@@ -464,7 +464,7 @@ function fileClosure(){
     });
   })();
   
-  aidInitDownloads()
+  aidInit()
   // add new code above this line
 }
 

@@ -11,7 +11,7 @@
           <span class="post_date">
             {{ .Date.Format (default "Jan 2, 2006" $.Site.Params.dateFormat) -}}
           </span>
-          <a class="nav-link" href="{{ .Permalink }}" title="{{ .Title }}">[{{ .Params.postid }}] {{ .Title }}</a>
+          <span class="aid_postid">[{{ .Params.postid }}]</span> <a class="nav-link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a>
         </li>
       {{ end }}
       </ul>

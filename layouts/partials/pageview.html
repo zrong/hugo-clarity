@@ -1,7 +1,6 @@
 {{- if isset .Site.Params.aid "pageview" }}
-{{ $infourl := replace .Site.Params.aid.pageview.info "%s" .Params.postid }}
-<div class="post_meta">
-  <script src="{{ $infourl }}"></script>
+<div class="post_meta aid_pageview" data-postid="{{ .Params.postid }}">
+  <span class="aid_pageview_item" data-postid="{{ .Params.postid }}"> </span>
   {{ T "views" }}
 </div>
 {{- end }}

@@ -19,7 +19,7 @@ function aidDownload (dldiv, infoURL, goURL) {
         ul.appendChild(li)
       }
     }
-    // TODO file的值可能是相对路径，需要判断
+    // file的值可能是相对路径。相对路径使用 aid_download 的下载网址转换服务
     let fileURL = null
     if (f.file.indexOf('http') === 0) {
       fileURL = f.file
@@ -35,26 +35,47 @@ function aidDownload (dldiv, infoURL, goURL) {
   })
 }
 
-function aidInitDownloads () {
-  // TODO 查找所有符合条件的 dl 容器，为其中的 btn 加入 click 事件
-  // 以下部分为伪代码
-  {{ if .Site.Params.aid.download }}
-  const AID_DL_INFO_URL = '{{ .Site.Params.aid.download.info }}'
-  const AID_DL_GO_URL = '{{ .Site.Params.aid.download.go }}'
-  const downloadItems = document.querySelectorAll('.aid_download_item')
-  if (downloadItems) {
-    for (const dldiv of downloadItems) {
-      // id is a number
-      let btn = dldiv.firstElementChild
-      btn.addEventListener('click', (evt) => {
-        const id = btn.dataset.aidDownloadId
-        // eslint-disable-next-line no-undef
-        const infoURL = AID_DL_INFO_URL.replace('%s', id)
-        // eslint-disable-next-line no-undef
-        const goURL = AID_DL_GO_URL.replace('%s', id)
-        aidDownload(dldiv, infoURL, goURL)
-      })
+
+function aidInit () {
+  /**
+   * 查找所有符合条件的 download 容器，为其中的 btn 加入 click 事件
+   * 条件为使用了 .aid_download_item 类名的容器
+   */
+  (function aidInitDownloads () {
+    {{- if .Site.Params.aid.download }}
+    const AID_DL_INFO_URL = '{{ .Site.Params.aid.download.info }}'
+    const AID_DL_GO_URL = '{{ .Site.Params.aid.download.go }}'
+    const downloadItems = document.querySelectorAll('.aid_download_item')
+    if (downloadItems) {
+      for (const dldiv of downloadItems) {
+        // id is a number
+        let btn = dldiv.firstElementChild
+        btn.addEventListener('click', (evt) => {
+          const id = btn.dataset.aidDownloadId
+          const infoURL = AID_DL_INFO_URL.replace('%s', id)
+          const goURL = AID_DL_GO_URL.replace('%s', id)
+          aidDownload(dldiv, infoURL, goURL)
+        })
+      }
     }
-  }
-  {{ end }}
+    {{- end }}
+  })();
+
+  (function aidInitPageview () {
+    {{ if .Site.Params.aid.pageview }}
+    const AID_PV_INFO_URL = '{{ .Site.Params.aid.pageview.info }}'
+    const pageviewItems = document.querySelectorAll('.aid_pageview_item')
+    if (pageviewItems) {
+      for (const pvspan of pageviewItems) {
+          const id = pvspan.dataset.postid
+          const infoURL = AID_PV_INFO_URL.replace('%s', id)
+          axios.get(infoURL).then((resp) => {
+            pvspan.innerText = resp.data.hit
+          }).catch((error) => {
+            pvspan.innerText = error.message
+          })
+      }
+    }
+    {{- end }}
+  })();
 }
