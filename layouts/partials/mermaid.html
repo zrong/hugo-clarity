@@ -1,0 +1,11 @@
+{{- if .HasShortcode "mermaid" }}
+{{- $mermaidMinPath := "js/mermaid.min.js" }}
+{{- $mermaidMin := resources.Get $mermaidMinPath | resources.ExecuteAsTemplate $mermaidMinPath . }}
+<script type="text/javascript" src="{{ $mermaidMin.Permalink }}" integrity="{{ $mermaidMin.Data.Integrity }}" crossorigin="anonymous"></script>
+<script>
+  const needMermaid = Boolean(window.mermaid) && Boolean(document.getElementsByClassName('mermaid'))
+  if (needMermaid) {
+    mermaid.initialize({startOnLoad: true, theme: 'neutral'})
+  }
+</script>
+{{- end }}

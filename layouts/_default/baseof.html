@@ -37,12 +37,15 @@
     {{- $mainScriptPath := "js/index.js" }}
     {{- $main := resources.Get $mainScriptPath | resources.ExecuteAsTemplate $mainScriptPath . }}
 
-    {{- $bundle := slice $swfobject $axios $aid $highlight $functions $code $main $custom | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+    {{- $bundle := slice $swfobject $axios $aid $highlight $functions $code $main $custom | resources.Concat "js/bundle.js" -}}
+
+    {{ if not .Site.IsServer }}
+    {{- $bundle := $bundle | resources.Minify | resources.Fingerprint "sha512" -}}
+    {{ end }}
 
     <!-- preload assets declaration -->
     <link rel="preload" href="{{ $styles.Permalink }}" integrity = "{{ $styles.Data.Integrity }}" as="style" crossorigin="anonymous">
-    <link rel="preload" href="{{ $bundle.Permalink }}" as="script" integrity=
-    "{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
+    <link rel="preload" href="{{ $bundle.Permalink }}" as="script" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
 
     <!-- styles file -->
     <link rel="stylesheet" type="text/css" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous">
@@ -78,6 +81,7 @@
     </main>
     {{- partial "icons" }}
     {{- partial "footer" . }}
+    {{- partial "mermaid" . }}
     <script type="text/javascript" src="{{ $bundle.Permalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous"></script>
     {{- with $s.customJS }}
     {{- range . -}}
