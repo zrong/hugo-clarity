@@ -1,23 +1,23 @@
 +++
-title = "{{ replace .Name "-" " " | title }}" # Title of the blog post.
+title = "{{ replace .Name "-" " " | title }}"
 postid = {{ .Name }}
-date = {{ .Date }} # Date of post creation.
+date = {{ .Date }}
 isCJKLanguage = true
-toc = true # Controls if a table of contents should be generated for first-level links automatically.
+toc = true
 type = "post"
 slug = "{{ .Name }}"
-description = "Article description." # Description used for search engine.
-featured = true # Sets if post is a featured post, making it appear on the sidebar. A featured post won't be listed on the sidebar if it's the current page
-draft = true # Sets whether to render this page. Draft of true will not be rendered.
+description = "Article description."
+featured = true
+draft = true
 # menu: main
-featureImage = "/images/path/file.jpg" # Sets featured image on blog post.
-thumbnail = "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
-shareImage = "/images/path/share.png" # Designate a separate image for social media sharing.
-codeMaxLines = 10 # Override global value for how many lines within a code block before auto-collapsing.
-codeLineNumbers = true # Override global value for showing of line numbers within code block.
-figurePositionShow = true # Override global value for showing the figure label.
+featureImage = "/images/path/file.jpg"
+thumbnail = "/images/path/thumbnail.png"
+shareImage = "/images/path/share.png"
+codeMaxLines = 10
+codeLineNumbers = true
+figurePositionShow = true
 category = [ "technology" ]
 tag = []
 +++
 
-**Insert Lead paragraph here.**
+{{< label 全文完 >}}
