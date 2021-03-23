@@ -19,13 +19,6 @@ function aidDownload (dldiv, infoURL, goURL) {
         ul.appendChild(li)
       }
     }
-    // file的值可能是相对路径。相对路径使用 aid_download 的下载网址转换服务
-    let fileURL = null
-    if (f.file.indexOf('http') === 0) {
-      fileURL = f.file
-    } else {
-      fileURL = goURL
-    }
     const lia = document.createElement('li')
     lia.innerHTML = `<a href="${fileURL}" target="_blank">{{ T "download" }}</a>`
     ul.appendChild(lia)
