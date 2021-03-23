@@ -20,7 +20,7 @@ function aidDownload (dldiv, infoURL, goURL) {
       }
     }
     const lia = document.createElement('li')
-    lia.innerHTML = `<a href="${fileURL}" target="_blank">{{ T "download" }}</a>`
+    lia.innerHTML = `<a href="${goURL}" target="_blank">{{ T "download" }}</a>`
     ul.appendChild(lia)
     dldiv.appendChild(ul)
   }).catch((error) => {
