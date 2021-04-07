@@ -1,7 +1,6 @@
 {{- $s := .Site.Params }}
-{{- if or .Params.enableMathNotation $s.enableMathNotation }}
-  {{ partial "math" . }}
-{{- end }}
+{{- partial "mermaid" . }}
+{{ partial "katex" . }}
 <footer class="footer">
   <div class="footer_inner wrap pale">
     <img src='{{ absURL (default "icons/apple-touch-icon.png" $s.footerLogo) }}' class="icon icon_2 transparent">
