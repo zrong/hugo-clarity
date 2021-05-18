@@ -9,6 +9,7 @@ slug = "{{ .Name }}"
 description = "Article description."
 featured = true
 draft = true
+aliases = [ "/post/{{ .Name }}.html",]
 # menu: main
 featureImage = "/images/path/file.jpg"
 thumbnail = "/images/path/thumbnail.png"
