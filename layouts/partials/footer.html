@@ -7,7 +7,7 @@
     <p>
       {{ T "copyright" }}&copy; {{ with $s.since }} {{ . }}{{ end }}<span class="year"></span> {{ upper .Site.Title }}. {{ T "all_rights" }}
       &nbsp;
-      {{- if .Site.Params.beian }}{{ .Site.Params.beian }}{{ end }}
+      {{- if .Site.Params.beianNum }}<a href="{{ .Site.Params.beianUrl }}">{{ .Site.Params.beianNum }}</a>{{ end }}
     </p>
     {{- partial "top" .}}
   </div>
