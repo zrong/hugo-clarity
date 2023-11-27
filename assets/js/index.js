@@ -464,7 +464,6 @@ function fileClosure(){
     });
   })();
   
-  aidInit()
   // add new code above this line
 }
 

@@ -1,6 +1,4 @@
-{{- if isset .Site.Params.aid "pageview" }}
-<div class="post_meta aid_pageview" data-postid="{{ .Params.postid }}">
-  <span class="aid_pageview_item" data-postid="{{ .Params.postid }}"> </span>
-  {{ T "views" }}
-</div>
-{{- end }}
+<aid-pageview class="post_meta" 
+  uri="{{ .Params.postid }}" 
+  fmthitnum="%s {{ T "views"}}">
+</aid-pageview>
