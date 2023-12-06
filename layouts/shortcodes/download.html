@@ -5,8 +5,8 @@
 {{ end }}
 <aid-download 
   ids="{{ range $i, $e := $.Params }}{{ if $i }},{{ end }}{{ $e }}{{ end }}"
-  fmtfilenum="%s {{ T (printf $fileStr) }}"
-  fmthitnum="%s {{ T "download" }}"
+  fmt-file-num="%s {{ T (printf $fileStr) }}"
+  fmt-hit-num="%s {{ T "download" }}"
   >
   <span slot="summary">{{ $fileLen }} {{ T (printf $fileStr) }}</span>
 </aid-download>
