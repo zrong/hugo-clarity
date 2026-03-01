@@ -5,9 +5,9 @@
   <head>
     {{- partial "head" . }}
     <!-- styles definition-->
-    {{- $options := (dict "targetPath" "css/styles.css" "outputStyle" "compressed" "enableSourceMap" "true") -}}
+    {{- $options := (dict "targetPath" "css/styles.css" "outputStyle" "compressed" "enableSourceMap" true "transpiler" "dartsass") -}}
     {{ $mainSassFile :=  "sass/main.sass" }}
-    {{- $styles := resources.Get $mainSassFile | resources.ExecuteAsTemplate $mainSassFile . | resources.ToCSS $options | resources.Fingerprint "sha512" }}
+    {{- $styles := resources.Get $mainSassFile | resources.ExecuteAsTemplate $mainSassFile . | css.Sass $options | resources.Fingerprint "sha512" }}
 
     <!-- scripts definition -->
     {{- $swfobjectPath := "js/swfobject.js" }}
@@ -33,7 +33,7 @@
 
     {{- $bundle := slice $swfobject $highlight $functions $code $main $custom | resources.Concat "js/bundle.js" -}}
 
-    {{ if not .Site.IsServer }}
+    {{ if not hugo.IsServer }}
     {{- $bundle := $bundle | resources.Minify | resources.Fingerprint "sha512" -}}
     {{ end }}
 
