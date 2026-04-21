@@ -1,7 +1,7 @@
 {{- if .HasShortcode "mermaid" }}
-<script src='{{ absURL "js/mermaid.min.js" }}' integrity="sha384-ouEDSZX7s11mVnXBtoR5H5qrVaBG2eK2fcIuH5co6DOpjLoI2ElL/OzAn61u1Yvo" crossorigin="anonymous"></script>
+<script src='{{ absURL "js/mermaid.min.js" }}' integrity="sha384-1CMXl090wj8Dd6YfnzSQUOgWbE6suWCaenYG7pox5AX7apTpY3PmJMeS2oPql4Gk" crossorigin="anonymous"></script>
 <script>
-  const needMermaid = Boolean(window.mermaid) && Boolean(document.getElementsByClassName('mermaid'))
+  const needMermaid = Boolean(document.getElementsByClassName('mermaid').length)
   if (needMermaid) {
     mermaid.initialize({startOnLoad: true, theme: 'neutral'})
   }
