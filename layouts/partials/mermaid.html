@@ -1,9 +1,6 @@
 {{- if .HasShortcode "mermaid" }}
-<script src='{{ absURL "js/mermaid.min.js" }}' integrity="sha384-1CMXl090wj8Dd6YfnzSQUOgWbE6suWCaenYG7pox5AX7apTpY3PmJMeS2oPql4Gk" crossorigin="anonymous"></script>
-<script>
-  const needMermaid = Boolean(document.getElementsByClassName('mermaid').length)
-  if (needMermaid) {
-    mermaid.initialize({startOnLoad: true, theme: 'neutral'})
-  }
+<script type="module">
+  import mermaid from '{{ "js/mermaid.min.js" | absURL }}';
+  mermaid.initialize({startOnLoad: true, theme: 'neutral'});
 </script>
 {{- end }}
