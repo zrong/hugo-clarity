@@ -409,31 +409,6 @@ function fileClosure(){
     });
   })();
   
-  function isMobileDevice() {
-    const agent = navigator.userAgent.toLowerCase();
-    const isMobile = agent.includes('android') || agent.includes('iphone');
-    return  isMobile;
-  };
-  
-  (function ifiOS(){
-    // modify backto top button
-    const backToTopButton = elem('.to_top');
-    const thisOS = getMobileOperatingSystem();
-    const ios = 'ios';
-    if(backToTopButton && thisOS === 'iOS') {
-      pushClass(backToTopButton, ios);
-    }
-    // precisely position back to top button on large screens
-    const buttonParentWidth = backToTopButton.parentNode.offsetWidth;
-    const docWidth = doc.offsetWidth;
-    let leftOffset = (docWidth - buttonParentWidth) / 2;
-    const buttonWidth = backToTopButton.offsetWidth;
-    leftOffset = leftOffset + buttonParentWidth - buttonWidth;
-    if(!isMobileDevice()){
-      backToTopButton.style.left = `${leftOffset}px`;
-    }
-  })();
-  
   (function sortTags() {
     doc.addEventListener('click', function(event){
       const active = 'active';
