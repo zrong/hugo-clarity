@@ -1,3 +1,5 @@
+@use 'variables' as *
+@use 'sass:color'
 // add customs styles and general overrides here
 // due to the cascading nature of css, if you try to override theme css variables in this file, those changes will not apply. Instead, override css variables in the `override.sass` file
 // we recommend not editing this file directly. Instead, create an `assets/sass/_custom.sass` file at the root level of your site.
@@ -13,9 +15,9 @@
   color: $light
   border: 1px solid $theme
   &:hover, &:focus
-    background-color: darken($theme, 20%)
+    background-color: color.adjust($theme, $lightness: -20%)
     color: $light
-    border: 1px solid darken($theme, 20%)
+    border: 1px solid color.adjust($theme, $lightness: -20%)
 
 .message
   @extend %message-shared
@@ -68,7 +70,6 @@
 
 .aid_pageview
   color: #777777
-  &_item
 
 .aid_postid
   color: #777777

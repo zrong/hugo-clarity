@@ -1,12 +1,12 @@
-@import 'variables'
-@import 'override'
+@use 'variables' as *
+@use 'override' as *
 // include static fonts only when they're not overriden
 {{- if ne .Site.Params.customFonts true }}
-@import 'fonts'
+@use 'fonts'
 {{- end }}
-@import 'base'
-@import 'components'
-@import 'utils'
-@import 'mobile'
-@import 'syntax'
-@import 'custom'
+@use 'base'
+@use 'components'
+@use 'utils'
+@use 'mobile'
+@use 'syntax'
+@use 'custom'

@@ -1,3 +1,5 @@
+@use 'variables' as *
+@use 'sass:color'
 %upcaret
   width: 0
   height: 0
@@ -13,7 +15,6 @@
   &_active
     background-color: rgba($light, 0.05)
     border-radius: 0.25rem
-  &, &_body
   &_icon
     width: 0.7rem
     margin-left: 0.33rem
@@ -169,9 +170,9 @@
   align-items: center
   user-select: none
   &:hover, &:focus
-    background-color: darken($theme, 20%)
+    background-color: color.adjust($theme, $lightness: -20%)
     color: $light
-    border: 1px solid darken($theme, 20%)
+    border: 1px solid color.adjust($theme, $lightness: -20%)
     
   &_translucent
     background-color: rgba($theme, 0.15)
@@ -446,7 +447,7 @@
     &:first-child, &:last-child
       display: none
     &.active a
-      background-color: darken($theme, 20%)
+      background-color: color.adjust($theme, $lightness: -20%)
   &-link
     padding: 0.25rem 0.75rem
     background-color: $theme

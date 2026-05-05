@@ -1,3 +1,5 @@
+@use 'variables' as *
+@use 'sass:color'
 *
   box-sizing: border-box
   -webkit-appearance: none
@@ -85,7 +87,7 @@ b, strong, em
 hr 
   border: none
   padding: 1px
-  background: darken($haze, 7.5%)
+  background: color.adjust($haze, $lightness: -7.5%)
   opacity: 0.5
   margin: 1rem 0
   @media (prefers-color-scheme: dark)

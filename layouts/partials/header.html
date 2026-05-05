@@ -18,7 +18,7 @@
     </a>
     <div class='nav_body nav_body_{{ .Site.Params.mobileNavigation }}'>
       {{ $context := . }}
-      {{ $menuData := .Site.Data.menu }}
+      {{ $menuData := hugo.Data.menu }}
       {{ with $menuData }}
         {{ partial "nav" (dict "context" $context "menu" $menuData) }}
       {{- else }}
