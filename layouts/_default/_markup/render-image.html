@@ -18,7 +18,12 @@
 {{- $image := "" -}}
 {{- if strings.HasPrefix $file "http" -}}
   {{- $scratch.Add "classes" " image_external" -}}
-  {{- $image = resources.GetRemote $file -}}
+  {{- $res := try (resources.GetRemote $file (dict "timeout" "5s")) -}}
+  {{- if $res.Err -}}
+    {{- warnf "Failed to fetch remote image %s: %s" $file $res.Err -}}
+  {{- else -}}
+    {{- $image = $res.Value -}}
+  {{- end -}}
   {{- with $image }}
     {{- if eq $image.MediaType.MainType "image" -}}
       {{- if eq $image.MediaType.SubType "svg" -}}
@@ -44,11 +49,13 @@
   {{- end -}}
 {{- end -}}
 
+{{- $diskPath := "" -}}
+{{- with $.Page.File }}{{ $diskPath = .Dir }}{{ end -}}
 {{- partial "figure" (
   dict
     "file" $file
     "image" $image
-    "diskPath" $.Page.File.Dir
+    "diskPath" $diskPath
     "webPath" $.Page.RelPermalink
     "alt" $alt
     "cap" $cap
