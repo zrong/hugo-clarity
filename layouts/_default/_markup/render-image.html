@@ -4,6 +4,10 @@
 {{- $cap := .Title -}}
 {{- $scratch := newScratch -}}
 {{- $scratch.Set "classes" "image_figure" -}}
+{{- $processRemoteImages := false -}}
+{{- with .Page.Site.Params.processRemoteImages -}}
+  {{- $processRemoteImages = . -}}
+{{- end -}}
 
 {{/* Determine if page bundles are set. */}}
 {{- $bundle := .Page.Site.Params.usePageBundles -}}
@@ -18,24 +22,28 @@
 {{- $image := "" -}}
 {{- if strings.HasPrefix $file "http" -}}
   {{- $scratch.Add "classes" " image_external" -}}
-  {{- $res := try (resources.GetRemote $file (dict "timeout" "5s")) -}}
-  {{- if $res.Err -}}
-    {{- warnf "Failed to fetch remote image %s: %s" $file $res.Err -}}
-  {{- else -}}
-    {{- $image = $res.Value -}}
-  {{- end -}}
-  {{- with $image }}
-    {{- if eq $image.MediaType.MainType "image" -}}
-      {{- if eq $image.MediaType.SubType "svg" -}}
-        {{- $image = "" -}}
-        {{- $scratch.Add "classes" " image_svg" -}}
-      {{- else -}}
-        {{- $file = path.Join $imagesDir $image -}}
-        {{- $image = $image.Content | resources.FromString $file -}}
-      {{- end -}}
+  {{- if $processRemoteImages -}}
+    {{- $res := try (resources.GetRemote $file (dict "timeout" "5s")) -}}
+    {{- if $res.Err -}}
+      {{- warnf "Failed to fetch remote image %s: %s" $file $res.Err -}}
     {{- else -}}
-      {{- $image = "" -}}
+      {{- $image = $res.Value -}}
     {{- end -}}
+    {{- with $image }}
+      {{- if eq $image.MediaType.MainType "image" -}}
+        {{- if eq $image.MediaType.SubType "svg" -}}
+          {{- $image = "" -}}
+          {{- $scratch.Add "classes" " image_svg" -}}
+        {{- else -}}
+          {{- $file = path.Join $imagesDir $image -}}
+          {{- $image = $image.Content | resources.FromString $file -}}
+        {{- end -}}
+      {{- else -}}
+        {{- $image = "" -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else if strings.HasSuffix (lower $file) ".svg" -}}
+    {{- $scratch.Add "classes" " image_svg" -}}
   {{- end -}}
 {{- else -}}
   {{- $scratch.Add "classes" " image_internal" -}}

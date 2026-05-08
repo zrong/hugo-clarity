@@ -57,7 +57,11 @@
         src="{{ .RelPermalink | absURL }}"
       {{ else }}
         class="{{ $classes }} image_unprocessed"
-        src="{{ $fileWeb | absURL }}"
+        {{ if in $classes "image_external" }}
+          src="{{ $fileWeb }}"
+        {{ else }}
+          src="{{ $fileWeb | absURL }}"
+        {{ end }}
       {{ end }}
       {{ with $cap }}
         title="{{ safeHTML $cap }}"
