@@ -21,7 +21,7 @@
 .shadow
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.17)
 
-@media screen and (min-width: $single-column-breakpoint)
+@media screen and (min-width: 42rem)
   %grid
     display: grid
     grid-template-columns: 1fr
@@ -59,9 +59,8 @@ $sites: ("facebook": #325c94, "twitter": #00abdc,"linkedin": #007bb6)
   text-align: center
 
 .inline
-  picture, img, &
-    display: inline
-    margin: 0
+  display: inline
+  margin: 0
 
 .hidden
   display: none

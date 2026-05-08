@@ -1,3 +1,5 @@
+@use 'variables' as *
+@use 'sass:color'
 %upcaret
   width: 0
   height: 0
@@ -13,7 +15,6 @@
   &_active
     background-color: rgba($light, 0.05)
     border-radius: 0.25rem
-  &, &_body
   &_icon
     width: 0.7rem
     margin-left: 0.33rem
@@ -38,7 +39,7 @@
     left: 0
     position: absolute
     z-index: 20
-    border-radius: 0 0 0.5rem 0.5rem
+    border-radius: 0 0 0.5rem 0.5rem 
     top: 3rem
     transition: height 0.3s ease-in-out
     height: 0
@@ -58,7 +59,7 @@
     padding-bottom: 0.5rem
     z-index: 3
     & + a
-      @media screen and (min-width: $mobile-menu-breakpoint)
+      @media screen and (min-width: 769px)
         padding-top: 0
     &:not(:first-child)
       position: relative
@@ -74,7 +75,7 @@
     overflow: initial
     border-radius: 0.5rem
     padding-bottom: 0.5rem
-    @media screen and (min-width: $mobile-menu-breakpoint)
+    @media screen and (min-width: 769px)
       color: var(--text)
     &::before, &::after
       content: ""
@@ -82,7 +83,7 @@
     &::before
       @extend %upcaret
       z-index: 1
-      @media screen and (min-width: $mobile-menu-breakpoint)
+      @media screen and (min-width: 769px)
         border-bottom: 0.5rem solid var(--choice-bg)
     &::after
       top: 0
@@ -92,7 +93,7 @@
       background: var(--translucent-light)
       border-radius: 0.5rem
       box-shadow: 0 1rem 3rem rgba(0,0,0,0.25)
-    @media screen and (min-width: $mobile-menu-breakpoint)
+    @media screen and (min-width: 769px)
       background: var(--choice-bg)
       width: auto
       white-space: nowrap;
@@ -108,14 +109,12 @@
     padding-bottom: 0.75rem
     transition: background 0.3s ease-out
     margin: 0
-    &:hover
-      color: var(--text-hover)
 
   &_brand
     img
       max-width: 15rem
       margin: 0
-    @media screen and (min-width: $mobile-menu-breakpoint)
+    @media screen and (min-width: 769px)
       padding-left: 0
       // margin-left: -16rem
       // transform: translateX(50rem)
@@ -124,7 +123,7 @@
 
   &_center
     display: none
-    @media screen and (min-width: $mobile-menu-breakpoint)
+    @media screen and (min-width: 769px)
       display: flex
       flex: 1
       align-items: center
@@ -133,7 +132,7 @@
         flex: initial
 
   &_hide
-    @media screen and (min-width: $mobile-menu-breakpoint)
+    @media screen and (min-width: 769px)
       display: none
   &_close
     display: none
@@ -147,7 +146,7 @@
   padding-top: 5rem
   @include content
 
-.footer
+.footer 
   // border-top: 1px solid $xhaze
   background: var(--footer-bg)
   margin-top: 2rem
@@ -170,22 +169,11 @@
   font-size: 0.9rem
   align-items: center
   user-select: none
-  &_back
-    color: $light
-    outline: none
-    border: none
-    appearance: none
-    background-color: $theme
-    font-size: 1rem
-    cursor: pointer
-    padding: 0.5rem 1rem
-    margin-bottom: 1.33rem
-    border-radius: 1.5rem
   &:hover, &:focus
-    background-color: darken($theme, 20%)
+    background-color: color.adjust($theme, $lightness: -20%)
     color: $light
-    border: 1px solid darken($theme, 20%)
-
+    border: 1px solid color.adjust($theme, $lightness: -20%)
+    
   &_translucent
     background-color: rgba($theme, 0.15)
     color: $theme
@@ -204,18 +192,13 @@
 .post
   &_link, &_title
     margin-bottom: 0
-  &_link
-    line-height: 1
-    > a
-      display: block
-      line-height: 1.35
   &s
     margin-top: 2rem
   &_header
     height: 50vh
     max-height: 35rem
     background-color: $bg
-    // background-image: url(#{$imagesPath}island.jpg)
+    // background-image: url(/images/island.jpg)
     background-size: cover
     background-position: center
     margin-top: 4.2rem
@@ -258,30 +241,16 @@
   &_share
     display: inline-flex
   &_meta
-    align-items: stretch
-    &, span
-      display: inline-flex
-      flex-flow: row wrap
-    span
-      align-items: center
-      margin-bottom: 0.5rem
-      @media screen and (min-width: 557px)
-        gap: 0.5rem 0
-      &:last-of-type
-        @media screen and (max-width: 667px)
-          margin-top: -0.5rem
+    display: inline-flex
+    flex-flow: row wrap
+    align-items: center
     .button
-      @media screen and (min-width: 667px)
-        margin: 0 0.5rem
-
+      margin-bottom: 0
   &_date
     margin-right: 0.5rem
     margin-left: 0.25rem
-  &_featured
-    display: block
-    margin: 1rem auto
   &_content
-    a:not(.button)
+    a
       color: $theme
     ul, ol
       list-style: initial
@@ -410,12 +379,6 @@
 .link
   opacity: 0
   position: relative
-  &_owner
-    .icon
-      background-image: url('#{$iconsPath}link.svg')
-      background-size: 100%
-      background-repeat: no-repeat
-      background-position: center right
   &_yank
     opacity: 1
     &ed
@@ -450,13 +413,13 @@
   &_thumbnail
     min-height: 10rem
     display: none
-    @media screen and (min-width: $mobile-menu-breakpoint)
-      display: block
+    @media screen and (min-width: 769px)
+      display: block 
       border-radius: 0.5rem
   &_footer
     &.partition
       display: grid
-      @media screen and (min-width: $mobile-menu-breakpoint)
+      @media screen and (min-width: 769px) 
         grid-template-columns: 2fr 7fr
         grid-gap: 1rem
 .sidebar
@@ -473,15 +436,6 @@
       left: -2rem
         // display: none
 
-.author
-  &_header
-    display: grid
-    grid-template-columns: 3rem 1fr
-    grid-gap: 1rem
-  &_bio
-    a
-      color: $theme
-
 .pagination
   display: flex
 
@@ -493,29 +447,19 @@
     &:first-child, &:last-child
       display: none
     &.active a
-      background-color: darken($theme, 20%)
+      background-color: color.adjust($theme, $lightness: -20%)
   &-link
     padding: 0.25rem 0.75rem
     background-color: $theme
     color: $light
     border-radius: 1rem
-  &_only
-    display: none !important
-  & &_only
-    display: initial !important
 
-.round
-  border-radius: 50%
-  max-width: 100%
-  height: auto
-  padding: 0
-  vertical-align: middle
 
 .float
   &_left
     float: left
     margin-right: 1rem
-    + p
+    + p 
       padding-top: 0
   &_right
     float: right
@@ -533,10 +477,12 @@
     fill: $haze
     margin-left: 0.75rem
 
-figcaption
-  font-style: italic
-  opacity: 0.67
-  font-size: 0.9rem
+.img
+  &_alt
+    font-style: italic
+    padding-top: 0rem
+    opacity: 0.67
+    font-size: 0.9rem
 
 .to
   &_top
@@ -565,14 +511,14 @@ figcaption
     &:hover svg
       opacity: 1
 
-.color
-  &_mode
+.color 
+  &_mode 
     // width: 3rem
     height: 1.5rem
     display: grid
     align-items: center
     margin: 0 0.5rem
-    @media screen and (min-width: $mobile-menu-breakpoint)
+    @media screen and (min-width: 769px)
       margin: 0 1.5rem
       grid-template-columns: 1fr
 
@@ -596,7 +542,7 @@ figcaption
       left: 0.1rem
       width: 1.3rem
       height: 1.3rem
-      background-image: url("#{$imagesPath}sun.svg")
+      background-image: url("#{$images}sun.svg")
       background-position: center
       background-size: cover
       border-radius: 50%
@@ -632,141 +578,3 @@ figcaption
     display: block
     margin-left: auto !important
     margin-right: auto !important
-  &_thumbnail
-    margin: 0
-
-.video
-  overflow: hidden
-  padding-bottom: 56.25%
-  position: relative
-  height: 0
-  margin: 1.5rem 0
-  border-radius: 0.6rem
-  background-color: var(--bg)
-  box-shadow: 0 1rem 2rem rgba(0,0,0,0.17)
-  iframe
-    left: 0
-    top: 0
-    height: 100%
-    width: 100%
-    border: none
-    position: absolute
-    transform: scale(1.02)
-
-.notices
-  border-top-width: 2rem
-  border-top-style: solid
-  color: #666
-  margin: 2rem 0
-  padding-bottom: .1px
-  padding-left: 1rem
-  padding-right: 1rem
-  .label
-    color: #fff
-    margin-top: -1.75rem
-    font-weight: bold
-    &:first-child::before
-      font-weight: 900
-      margin-left: -.35rem
-      margin-right: .35rem
-  &.info
-    border-color: var(--notice-info-border-color)
-    background: var(--notice-info-background)
-  &.warning
-    border-color: var(--notice-warning-border-color)
-    background: var(--notice-warning-background)
-  &.image-warning
-    margin: 0
-  &.note
-    border-color: var(--notice-note-border-color)
-    background: var(--notice-note-background)
-  &.tip
-    border-color: var(--notice-tip-border-color)
-    background: var(--notice-tip-background)
-  .highlight_wrap
-    &, .panel_box
-      background: var(--notice-code-bg) !important
-
-
-// search
-
-.search
-  flex: 1
-  display: flex
-  justify-content: flex-end
-  position: relative
-  max-width: 25rem
-  margin: 0.5rem 0 0
-  --border: transparent
-  &_field
-    padding: 0.5rem 1rem
-    width: 100%
-    outline: none
-    color: var(--text)
-    background: var(--post-bg)
-    border: 1px solid var(--border)
-    border-radius: 8px
-    font-size: 1rem
-    box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.1)
-    &:hover, &:focus
-      // background: var(--search-bg)
-  &_field:focus + &_label
-    opacity: 0
-  &_label
-    position: absolute
-    z-index: 9
-    opacity: 0.67
-    right: 0.67rem
-    top: 0.25rem
-    width: 1rem
-    height: 1rem
-    svg
-      width: 100%
-      height: 100%
-      fill: #7C849B
-  &_result
-    padding: 0.5rem 1rem
-    &:not(.passive):hover
-      background-color: var(--code-bg)
-      color: $light
-    &.passive
-      display: grid
-    &s
-      width: 100%
-      background-color: var(--choice-bg)
-      color: var(--text)
-      border-radius: var(--radius)
-      box-shadow: 0 1rem 4rem rgba(0,0,0,0.17) !important
-      position: absolute
-      top: 125%
-      display: grid
-      overflow: hidden
-      z-index: 3
-      &:empty
-        display: none
-  &_title
-    padding: 0.25rem 1rem !important
-    background-color: $theme
-    color: var(--light)
-    margin: 0
-    font-size: 1.25rem
-    &:empty
-      display: none
-  &_submit
-    position: absolute
-    --margin: 3px
-    right: var(--margin)
-    top: var(--margin)
-    bottom: var(--margin)
-    z-index: 9
-    cursor: pointer
-    border-radius: calc(var(--radius) / 2)
-
-#results
-  .search
-    &_title, &_result
-      padding: 0.5rem 0
-
-.openstreetmap
-	border: none
-	

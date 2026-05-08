@@ -1,3 +1,5 @@
+@use 'variables' as *
+@use 'sass:color'
 *
   box-sizing: border-box
   -webkit-appearance: none
@@ -13,7 +15,6 @@ body, html
   text-rendering: geometricPrecision
   -webkit-text-size-adjust: 100%
   font-size: 100%
-  scroll-padding-top: 4.5rem
   &::-webkit-scrollbar-corner
     background-color: transparent
 body
@@ -80,16 +81,13 @@ ul
   -webkit-padding-start: 0
   -moz-padding-start: 0
 
-em
-  font-weight: 500
-
-b, strong
-  font-weight: 700
+b, strong, em 
+  font-weight: bold
 
 hr 
   border: none
   padding: 1px
-  background: darken($haze, 7.5%)
+  background: color.adjust($haze, $lightness: -7.5%)
   opacity: 0.5
   margin: 1rem 0
   @media (prefers-color-scheme: dark)
@@ -149,9 +147,3 @@ blockquote
     margin-top: 2.25rem
 p
   padding: 0.8rem 0
-  &:empty
-    padding: 0
-
-picture
-  display: block
-  width: 100%

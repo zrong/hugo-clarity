@@ -1,0 +1,8 @@
+<figure>
+  <div class="mermaid">
+  {{ .Inner }}
+  </div>
+  {{ with .Get "title" }}
+  <figcaption class="img_alt">{{ . }}</figcaption>
+  {{ end }}
+</figure>

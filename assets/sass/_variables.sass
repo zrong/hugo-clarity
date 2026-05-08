@@ -1,10 +1,12 @@
+@use 'sass:color'
+$font-path: '../fonts'
+$icons: '../icons/'
+$images: '../images/'
 $light: #fff
 $haze: #fafafa
-$xhaze: darken($haze, 11%)
+$xhaze: color.adjust($haze, $lightness: -11%)
 $bg: #002538
 $theme: #0077b8
-$mobile-menu-breakpoint: 769px
-$single-column-breakpoint: 42rem
 
 @mixin  content()
   --maxWidth: 1440px
@@ -31,7 +33,6 @@ html
   --gray: #020202
   --accent: var(--gray)
   --text: #575757
-  --text-hover: var(--gray)
   --header-text: var(--dark)
   --font: Metropolis, sans-serif
   --theme: #0077b8
@@ -48,23 +49,12 @@ html
   --choice-bg: var(--haze)
   --ease: cubic-bezier(0.39, 0.575, 0.565, 1)
   --easing: cubic-bezier(.19,1,.22,1)
-  --notice-code-bg: #0D3042
-  --notice-info-border-color: #6AB0DE
-  --notice-info-background: #E7F2FA
-  --notice-note-border-color: #F0B37E
-  --notice-note-background: #FFF2DB
-  --notice-tip-border-color: rgba(92, 184, 92, 0.8)
-  --notice-tip-background: #E6F9E6
-  --notice-warning-border-color: rgba(217, 83, 79, 0.8)
-  --notice-warning-background: #FAE2E2
-
   &.page
     --choice-bg: var(--light)
   @mixin darkmode
     --light: hsla(0,0%,100%,0.87)
     --color-mode: 'dim'
     --text: var(--light)
-    --text-hover: var(--haze)
     --accent: var(--bubble)
     --choice-bg: var(--bg)
     --code-bg: var(--translucent-light)
@@ -75,7 +65,7 @@ html
     --footer-bg: var(--bg)
     --post-bg: var(--translucent-light)
     *
-      // box-shadow: none !important
+      box-shadow: none !important
 
   &[data-mode="dim"]
     @include darkmode
@@ -96,7 +86,7 @@ html
     .color
       &_choice
         &::after
-          background-image: url("#{$imagesPath}night-moon.jpg")
+          background-image: url("#{$images}night-moon.jpg")
           transform: translateX(1.4rem)
 
   @media (prefers-color-scheme: dark)
@@ -112,7 +102,7 @@ html
         img
           background: none
         svg
-          fill: #fafafa 
+          fill: #fafafa
       .sidebar
         &_inner
           &::before
@@ -120,5 +110,5 @@ html
       .color
         &_choice
           &::after
-            background-image: url("#{$imagesPath}night-moon.jpg")
+            background-image: url("#{$images}night-moon.jpg")
             transform: translateX(1.4rem)
