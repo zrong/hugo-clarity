@@ -1,4 +1,4 @@
-{{ $defaultLanguage := site.LanguageCode }}
+{{ $defaultLanguage := site.Language.Locale }}
 {{ if hugo.IsMultilingual }}
   {{ $languages := site.Languages }}
   {{ $order := slice }}
